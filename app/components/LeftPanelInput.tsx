@@ -112,7 +112,10 @@ export default function LeftPanelInput({
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ text: uploadResult.text }),
+        body: JSON.stringify({ 
+          text: uploadResult.text,
+          namespace: 'default'
+        }),
       });
 
       if (!pineconeResponse.ok) {

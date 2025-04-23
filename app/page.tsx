@@ -234,14 +234,14 @@ export default function Page() {
 
   const BACKEND_URL = 'https://final-ff.onrender.com';
 
-  const embedAndUploadToPinecone = async (text: string) => {
+  const embedAndUploadToPinecone = async (text: string, name?: string) => {
     try {
       const response = await fetch(`${BACKEND_URL}${API_CONFIG.ENDPOINTS.PINECONE.UPLOAD}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ text }),
+        body: JSON.stringify({ text, name }),
       });
 
       if (!response.ok) {
