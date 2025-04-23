@@ -1,0 +1,326 @@
+{
+  "CSRD": [
+    {
+      "id": "csrd-1",
+      "esrs": "ESRS 2",
+      "question": "Has the company conducted and disclosed a double materiality assessment?",
+      "alternatives": [
+        "Does the report explain both how the company impacts the environment and how sustainability issues affect it?",
+        "Is there discussion of both 'impact materiality' and 'financial materiality'?",
+        "Does the company explain its dual perspective on sustainability risks and opportunities?"
+      ],
+      "threshold": 0.55
+    },
+    {
+      "id": "csrd-2",
+      "esrs": "ESRS 2",
+      "question": "Are stakeholders and their expectations identified and considered?",
+      "alternatives": [
+        "Does the company disclose its main stakeholder groups?",
+        "Is stakeholder engagement described?"
+      ]
+    },
+    {
+      "id": "csrd-3",
+      "esrs": "ESRS 2",
+      "question": "Are the company's sustainability policies described?",
+      "alternatives": [
+        "Does the report outline key ESG policies?",
+        "Are environmental and social governance policies mentioned?"
+      ]
+    },
+    {
+      "id": "csrd-4",
+      "esrs": "ESRS E1",
+      "question": "Are Scope 1, 2, and 3 GHG emissions reported with sufficient detail?",
+      "alternatives": [
+        "Are direct and indirect greenhouse gas emissions disclosed across the value chain?",
+        "Does the report break down emissions by scope with relevant data sources?",
+        "Is there data for operational, energy-related, and value chain emissions?"
+      ],
+      "threshold": 0.60
+    },
+    {
+      "id": "csrd-5",
+      "esrs": "ESRS E1",
+      "question": "Is there a clear climate transition plan aligned with 1.5°C or net-zero goals?",
+      "alternatives": [
+        "Does the company outline its strategy for climate neutrality or decarbonization?",
+        "Is there a roadmap for emission reduction and alignment with climate goals?",
+        "What steps has the company planned to transition to a low-carbon economy?"
+      ],
+      "threshold": 0.58
+    },
+    {
+      "id": "csrd-6",
+      "esrs": "ESRS E1",
+      "question": "Are climate-related risks and opportunities disclosed?",
+      "alternatives": [
+        "Does the report identify exposure to climate risks?",
+        "Are business opportunities from the energy transition discussed?"
+      ]
+    },
+    {
+      "id": "csrd-7",
+      "esrs": "ESRS E1",
+      "question": "Are science-based climate targets and timelines disclosed?",
+      "alternatives": [
+        "Are net-zero or interim GHG reduction goals included with target dates?",
+        "Is progress against climate goals measured or reported?",
+        "Does the company disclose performance metrics tied to climate targets?"
+      ],
+      "threshold": 0.60
+    },
+    {
+      "id": "csrd-8",
+      "esrs": "ESRS E2",
+      "question": "Are pollution prevention and control measures disclosed?",
+      "alternatives": [
+        "Does the report discuss how it prevents pollution?",
+        "Are air, water, and soil protection initiatives described?"
+      ]
+    },
+    {
+      "id": "csrd-9",
+      "esrs": "ESRS E3",
+      "question": "Is water consumption and efficiency disclosed?",
+      "alternatives": [
+        "Are water usage statistics reported?",
+        "Does the report describe water-saving initiatives?"
+      ]
+    },
+    {
+      "id": "csrd-10",
+      "esrs": "ESRS E4",
+      "question": "Are the company\u2019s impacts on biodiversity described?",
+      "alternatives": [
+        "Is biodiversity loss addressed?",
+        "Does the company disclose actions to protect nature?"
+      ]
+    },
+    {
+      "id": "csrd-11",
+      "esrs": "ESRS E5",
+      "question": "Is resource use and circular economy performance disclosed?",
+      "alternatives": [
+        "Are materials reused, recycled, or reduced?",
+        "Does the report mention waste minimization strategies?"
+      ]
+    },
+    {
+      "id": "csrd-12",
+      "esrs": "ESRS S1",
+      "question": "Are employee demographics disclosed?",
+      "alternatives": [
+        "Does the report include gender, age, or diversity breakdowns?",
+        "Are workforce composition statistics provided?"
+      ]
+    },
+    {
+      "id": "csrd-13",
+      "esrs": "ESRS S1",
+      "question": "Are training and development initiatives described?",
+      "alternatives": [
+        "Does the report mention employee learning or education programs?",
+        "Is upskilling discussed?"
+      ]
+    },
+    {
+      "id": "csrd-14",
+      "esrs": "ESRS S1",
+      "question": "Are occupational health and safety practices covered?",
+      "alternatives": [
+        "Does the company disclose injury or incident rates?",
+        "Are worker protection measures discussed?"
+      ]
+    },
+    {
+      "id": "csrd-15",
+      "esrs": "ESRS S2",
+      "question": "Are working conditions in the value chain discussed?",
+      "alternatives": [
+        "Is supplier labor practice mentioned?",
+        "Does the company assess labor rights risks in its supply chain?"
+      ]
+    },
+    {
+      "id": "csrd-16",
+      "esrs": "ESRS S3",
+      "question": "Does the company engage with affected communities?",
+      "alternatives": [
+        "Are local community concerns or partnerships described?",
+        "Is social impact monitoring mentioned?"
+      ]
+    },
+    {
+      "id": "csrd-17",
+      "esrs": "ESRS S4",
+      "question": "Are consumer health and safety risks managed?",
+      "alternatives": [
+        "Does the report describe product safety measures?",
+        "Is customer well-being discussed?"
+      ]
+    },
+    {
+      "id": "csrd-18",
+      "esrs": "ESRS G1",
+      "question": "Is the board's role in overseeing sustainability clearly described?",
+      "alternatives": [
+        "Who on the board is responsible for ESG?",
+        "Does the board review climate or social strategies?",
+        "Is a sustainability or ESG committee mentioned at the governance level?"
+      ],
+      "threshold": 0.58
+    },
+    {
+      "id": "csrd-19",
+      "esrs": "ESRS G1",
+      "question": "Are executive ESG incentives disclosed?",
+      "alternatives": [
+        "Are bonuses or targets tied to sustainability?",
+        "Does ESG factor into management remuneration?"
+      ]
+    },
+    {
+      "id": "csrd-20",
+      "esrs": "ESRS G1",
+      "question": "Is anti-corruption and bribery policy explained?",
+      "alternatives": [
+        "Does the report address integrity and ethical behavior?",
+        "Are compliance procedures or whistleblowing mechanisms discussed?"
+      ]
+    },
+    {
+      "id": "csrd-21",
+      "esrs": "ESRS G1",
+      "question": "Are political engagement and lobbying activities disclosed?",
+      "alternatives": [
+        "Does the company report its lobbying positions or partners?",
+        "Are donations or memberships to political entities described?"
+      ]
+    },
+    {
+      "id": "csrd-22",
+      "esrs": "ESRS 1",
+      "question": "Are general reporting principles described?",
+      "alternatives": [
+        "Is the report prepared with comparability and completeness?",
+        "Are assumptions and measurement techniques explained?"
+      ]
+    },
+    {
+      "id": "csrd-23",
+      "esrs": "ESRS 1",
+      "question": "Is the report prepared in accordance with ESRS standards?",
+      "alternatives": [
+        "Does it claim adherence to ESRS?",
+        "Are deviations from ESRS mentioned?"
+      ]
+    },
+    {
+      "id": "csrd-24",
+      "esrs": "ESRS 2",
+      "question": "Is the report assured by a third party or verified independently?",
+      "alternatives": [
+        "Is an external auditor or verifier involved in sustainability disclosures?",
+        "Was the report reviewed for reliability or accuracy by a third party?",
+        "Does the company mention assurance providers for ESG data?"
+      ],
+      "threshold": 0.60
+    },
+    {
+      "id": "csrd-25",
+      "esrs": "ESRS E1",
+      "question": "Is energy consumption reported?",
+      "alternatives": [
+        "Does the report quantify energy usage?",
+        "Are renewable vs. non-renewable energy sources disclosed?"
+      ]
+    },
+    {
+      "id": "csrd-26",
+      "esrs": "ESRS E1",
+      "question": "Does the report include GHG intensity metrics?",
+      "alternatives": [
+        "Are emissions normalized per revenue, product, or employee?",
+        "Are carbon intensity trends reported?"
+      ]
+    },
+    {
+      "id": "csrd-27",
+      "esrs": "ESRS E3",
+      "question": "Are water-related risks assessed?",
+      "alternatives": [
+        "Does the company identify exposure to drought or flooding?",
+        "Is water stress considered?"
+      ]
+    },
+    {
+      "id": "csrd-28",
+      "esrs": "ESRS E5",
+      "question": "Is waste generation reported by type?",
+      "alternatives": [
+        "Does the report differentiate hazardous vs. non-hazardous waste?",
+        "Are landfill, incineration, and recycling rates disclosed?"
+      ]
+    },
+    {
+      "id": "csrd-29",
+      "esrs": "ESRS G1",
+      "question": "Are internal control systems for ESG described?",
+      "alternatives": [
+        "Is there oversight of data quality and accuracy?",
+        "Are sustainability disclosures traceable and robust?"
+      ]
+    },
+    {
+      "id": "csrd-30",
+      "esrs": "ESRS S1",
+      "question": "Are diversity and inclusion programs disclosed?",
+      "alternatives": [
+        "Does the company promote equality?",
+        "Are women, minorities, or underrepresented groups supported?"
+      ]
+    },
+    {
+      "id": "csrd-31",
+      "esrs": "ESRS S1",
+      "question": "Is fair remuneration addressed?",
+      "alternatives": [
+        "Does the report include gender pay gap data?",
+        "Are wage structures explained?"
+      ]
+    },
+    {
+      "id": "csrd-32",
+      "esrs": "ESRS S3",
+      "question": "Does the company report on human rights due diligence?",
+      "alternatives": [
+        "Are human rights risks identified, assessed, and addressed?",
+        "Does the report reference the UN Guiding Principles?",
+        "How does the company monitor, prevent, or remedy human rights impacts?"
+      ],
+      "threshold": 0.57
+    },
+    {
+      "id": "csrd-33",
+      "esrs": "ESRS S4",
+      "question": "Are customer privacy and data protection covered?",
+      "alternatives": [
+        "Is compliance with GDPR or similar regulations described?",
+        "Are cybersecurity practices reported?"
+      ]
+    },
+    {
+      "id": "csrd-34",
+      "esrs": "ESRS E1",
+      "question": "Does the report assess climate scenario impacts?",
+      "alternatives": [
+        "Has the company conducted climate scenario analysis?",
+        "Is the business model tested under different climate futures (e.g. 1.5°C or 2°C)?",
+        "How does the report evaluate business resilience under climate stress-testing?"
+      ],
+      "threshold": 0.55
+    }
+  ]
+}

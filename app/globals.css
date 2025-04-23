@@ -1,0 +1,535 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Layout */
+.app-container {
+  @apply min-h-screen w-full flex flex-col lg:flex-row;
+}
+
+.left-panel {
+  @apply w-full lg:w-[300px] bg-white border-b lg:border-b-0 lg:border-r border-gray-200;
+}
+
+.main-content {
+  @apply flex-1 overflow-auto;
+}
+
+.tools-panel {
+  @apply w-full lg:w-[300px] bg-white border-t lg:border-t-0 lg:border-l border-gray-200;
+}
+
+/* Components */
+.upload-section {
+  @apply p-4 md:p-6;
+}
+
+.upload-box {
+  @apply bg-white p-4 rounded-xl border border-gray-200 mb-4;
+}
+
+.tools-section {
+  @apply bg-white p-4 rounded-xl border border-gray-200 mb-4;
+}
+
+.feature-card {
+  @apply bg-white rounded-lg p-4 border border-gray-200;
+}
+
+.core-features {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-4 p-4;
+}
+
+/* Mobile utilities */
+.mobile-hidden {
+  @apply hidden md:block;
+}
+
+.mobile-only {
+  @apply block md:hidden;
+}
+
+/* Chat styling */
+.chat-message {
+  @apply p-4 break-words;
+}
+
+.chat-content {
+  @apply leading-relaxed;
+}
+
+.chat-content p {
+  @apply mb-3 last:mb-0;
+}
+
+.chat-content h1,
+.chat-content h2,
+.chat-content h3,
+.chat-content h4,
+.chat-content h5,
+.chat-content h6 {
+  @apply font-semibold mt-5 mb-3;
+}
+
+.chat-content ul,
+.chat-content ol {
+  @apply mt-2 mb-3 pl-6;
+}
+
+.chat-content pre {
+  @apply bg-gray-50 p-3 rounded-md overflow-x-auto my-3;
+}
+
+.chat-content code {
+  @apply font-mono bg-gray-50 px-1 py-0.5 rounded-sm;
+}
+
+/* Form elements */
+.file-input {
+  @apply w-full p-2 border rounded;
+}
+
+.submit-button {
+  @apply w-full py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1024px) {
+  .left-panel,
+  .tools-panel {
+    height: auto;
+    max-height: 50vh;
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .upload-section {
+    padding: 1rem;
+  }
+  
+  .core-features {
+    padding: 1rem;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .upload-section {
+    padding: 0.75rem;
+  }
+  
+  .feature-card {
+    padding: 0.75rem;
+  }
+}
+
+/* Chat content styling */
+.chat-content {
+  line-height: 1.5;
+}
+
+.chat-content p {
+  margin-bottom: 0.75rem;
+}
+
+.chat-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Markdown style header formatting */
+.chat-content h1, 
+.chat-content h2, 
+.chat-content h3, 
+.chat-content h4, 
+.chat-content h5, 
+.chat-content h6 {
+  font-weight: 600;
+  margin-top: 1.25rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.25;
+}
+
+.chat-content h1 {
+  font-size: 1.5rem;
+}
+
+.chat-content h2 {
+  font-size: 1.35rem;
+}
+
+.chat-content h3 {
+  font-size: 1.2rem;
+}
+
+.chat-content h4 {
+  font-size: 1.1rem;
+}
+
+.chat-content h5, 
+.chat-content h6 {
+  font-size: 1rem;
+}
+
+/* Text formatting */
+.chat-content strong,
+.chat-content b {
+  font-weight: 600;
+}
+
+.chat-content em,
+.chat-content i {
+  font-style: italic;
+}
+
+.chat-content ul, 
+.chat-content ol {
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem;
+}
+
+.chat-content ul {
+  list-style-type: disc;
+}
+
+.chat-content ol {
+  list-style-type: decimal;
+}
+
+.chat-content li {
+  margin-bottom: 0.25rem;
+}
+
+.chat-content li:last-child {
+  margin-bottom: 0;
+}
+
+.chat-content pre {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  overflow-x: auto;
+  margin: 0.75rem 0;
+}
+
+.chat-content code {
+  font-family: monospace;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+}
+
+/* Blockquotes for markdown */
+.chat-content blockquote {
+  border-left: 3px solid #e2e8f0;
+  padding-left: 1rem;
+  margin-left: 0;
+  margin-right: 0;
+  font-style: italic;
+  color: #4a5568;
+}
+
+/* Card grid layouts */
+.analysis-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
+}
+
+.analysis-card {
+  @apply p-4 rounded-lg border border-gray-200 bg-white;
+}
+
+/* Mobile menu */
+.mobile-menu-button {
+  @apply lg:hidden p-2 rounded-md hover:bg-gray-100;
+}
+
+.desktop-menu {
+  @apply hidden lg:block;
+}
+
+/* Table styles */
+.table-container {
+  @apply w-full overflow-x-auto;
+}
+
+.data-table {
+  @apply min-w-full divide-y divide-gray-200;
+}
+
+.table-header {
+  @apply bg-gray-50;
+}
+
+.table-cell {
+  @apply px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+}
+
+/* Responsive padding utility */
+.responsive-padding {
+  @apply p-2 sm:p-4 md:p-6 lg:p-8;
+}
+
+/* Media queries for responsive behavior */
+@media (max-width: 1024px) {
+  .left-panel {
+    border-right: none;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .analysis-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .analysis-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .main-panel {
+    padding: 1rem;
+  }
+  
+  .analysis-card {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .responsive-padding {
+    padding: 0.5rem;
+  }
+  
+  .main-panel {
+    padding: 0.5rem;
+  }
+  
+  .analysis-card {
+    padding: 0.75rem;
+  }
+}
+
+/* Ensure proper stacking on mobile */
+@media (max-width: 1024px) {
+  .app-container {
+    flex-direction: column;
+  }
+  
+  .left-panel {
+    width: 100%;
+    max-height: none;
+  }
+  
+  .main-panel {
+    width: 100%;
+  }
+}
+
+/* Table responsiveness */
+@media (max-width: 768px) {
+  .table-container {
+    margin: 0 -1rem;
+    padding: 0 1rem;
+  }
+  
+  .table-cell {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* Cards container */
+.cards-container {
+  @apply space-y-4;
+}
+
+/* Utility classes for better mobile experience */
+.chat-message {
+  padding: 1rem;
+  width: 100%;
+  word-break: break-word;
+}
+
+.file-upload-area {
+  padding: 1rem;
+  border: 2px dashed #e5e7eb;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+/* Keep buttons and inputs accessible on mobile */
+button, 
+input[type="text"],
+input[type="file"] {
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+}
+
+/* Ensure dropdowns and menus are usable on mobile */
+select {
+  min-height: 44px;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1024px) {
+  .app-container {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .left-panel {
+    width: 250px;
+    min-width: 250px;
+  }
+  
+  .tools-panel {
+    width: 250px;
+    min-width: 250px;
+  }
+
+  .core-features {
+    padding: 1rem;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column;
+  }
+  
+  .left-panel {
+    width: 100%;
+    min-width: 100%;
+    height: auto;
+    max-height: 50vh;
+    overflow-y: auto;
+    border-right: none;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .tools-panel {
+    width: 100%;
+    min-width: 100%;
+    height: auto;
+    max-height: 50vh;
+    overflow-y: auto;
+    border-left: none;
+    border-top: 1px solid #e5e7eb;
+  }
+  
+  .main-content {
+    width: 100%;
+    padding: 0.75rem;
+  }
+
+  .core-features {
+    grid-template-columns: 1fr;
+    padding: 0.75rem;
+    gap: 0.75rem;
+  }
+
+  .feature-card {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .left-panel,
+  .tools-panel {
+    padding: 0.75rem;
+  }
+
+  .main-content {
+    padding: 0.5rem;
+  }
+
+  .core-features {
+    padding: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  .feature-card {
+    padding: 0.75rem;
+  }
+
+  .upload-box,
+  .tools-section {
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
+@screen sm {
+  .tools-section {
+    @apply p-6;
+  }
+}
+
+@screen md {
+  .core-features {
+    @apply grid-cols-2;
+  }
+}
+
+@screen lg {
+  .core-features {
+    @apply grid-cols-2 gap-6;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .core-features {
+    grid-template-columns: 1fr;
+    padding: 0.75rem;
+  }
+
+  .feature-card {
+    padding: 1rem;
+    min-height: auto;
+  }
+
+  .tools-section {
+    padding: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .core-features {
+    padding: 0.5rem;
+    gap: 0.75rem;
+  }
+
+  .feature-card {
+    padding: 0.875rem;
+  }
+
+  .tools-section {
+    padding: 0.5rem;
+  }
+}
+
+
+

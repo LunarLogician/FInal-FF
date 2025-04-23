@@ -1,0 +1,114 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+venv/
+.venv/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+*.sublime-workspace
+*.sublime-project
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Testing
+coverage/
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+.nox/
+.hypothesis/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build output
+dist/
+build/
+out/
+.next/
+.nuxt/
+.nitro/
+.output/
+
+# Misc
+.DS_Store
+*.pem
+*.key
+*.cert
+*.crt
+*.p12
+*.pfx
+*.der
+*.p7b
+*.p7c
+*.p7m
+*.p7s
+*.crl
+*.crl.der
+*.crl.pem
+*.crt.der
+*.crt.pem
+*.csr
+*.csr.der
+*.csr.pem
+*.key.der
+*.key.pem
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# Next.js
+node_modules/
+*.log
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Project specific
+uploads/
+*.pdf
+test.txt

@@ -1,0 +1,71 @@
+services:
+  - type: web
+    name: reports-rag
+    env: node
+    region: oregon
+    buildCommand: |
+      python -m pip install -r requirements.txt
+      npm install
+      npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_VERSION
+        value: 20.0.0
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: NEXT_PUBLIC_API_URL
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: PINECONE_API_KEY
+        sync: false
+      - key: PINECONE_REGION
+        value: us-east-1
+      - key: PINECONE_INDEX
+        value: embed-upload
+      - key: PINECONE_DIMENSIONS
+        value: "1536"
+      - key: NEXT_PUBLIC_ANALYZE_ENDPOINT
+        value: /analyze
+      - key: NEXT_PUBLIC_CONSISTENCY_ENDPOINT
+        value: /consistency/consistency
+      - key: NEXT_PUBLIC_ESG_ENDPOINT
+        value: /esg
+    healthCheckPath: /api/health
+    autoDeploy: true
+
+  # Main Service (FastAPI)
+  - type: web
+    name: main-service
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: PINECONE_API_KEY
+        sync: false
+      - key: PINECONE_ENVIRONMENT
+        sync: false
+      - key: PINECONE_INDEX
+        sync: false
+
+  # ESG Service (Flask)
+  - type: web
+    name: esg-service
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python flask_app/esg.py
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+
+  # Additional Service (FastAPI)
+  - type: web
+    name: additional-service
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false 

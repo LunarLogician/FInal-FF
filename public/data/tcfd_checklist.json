@@ -1,0 +1,140 @@
+{
+  "Governance": [
+    {
+      "id": "GOV-1",
+      "question": "Describe the board\u2019s oversight of climate-related risks and opportunities.",
+      "alternatives": [
+        "How does the board oversee climate-related risks and opportunities?",
+        "What is the board's role in managing climate-related risks and opportunities?",
+        "In what ways does the board govern climate-related risks and opportunities?",
+        "The board regularly reviews climate-related risks and integrates them into corporate strategy.",
+        "Our board is briefed quarterly on key environmental and climate risks.",
+        "Board-level committees are tasked with monitoring climate opportunities and exposures.",
+        "Oversight of climate risk is part of our governance charter."
+      ],
+      "threshold": 0.5
+    },
+    {
+      "id": "GOV-2",
+      "question": "Describe management\u2019s role in assessing and managing climate-related risks and opportunities.",
+      "alternatives": [
+        "How does management assess and manage climate-related risks and opportunities?",
+        "What responsibilities does management have regarding climate-related risks and opportunities?",
+        "In what ways does management handle climate-related risks and opportunities?",
+        "Climate-related risk assessments are conducted by senior management teams.",
+        "The executive team integrates climate risk into operational decision-making.",
+        "Responsibility for climate issues is assigned to specific business units."
+      ],
+      "threshold": 0.5
+    }
+  ],
+  "Strategy": [
+    {
+      "id": "STR-2",
+      "question": "Describe the impact of climate-related risks and opportunities on the organization\u2019s businesses, strategy, and financial planning.",
+      "alternatives": [
+        "How do climate-related risks and opportunities affect the organization's business operations, strategy, and financial planning?",
+        "What is the influence of climate-related risks and opportunities on the organization's strategic and financial decisions?",
+        "In what ways do climate-related risks and opportunities impact the organization's business and financial planning?",
+        "Climate change influences our capital allocation and long-term business strategy.",
+        "We factor climate risks into our investment and planning decisions.",
+        "Revenue projections account for climate-related disruptions and opportunities.",
+        "Strategic planning incorporates scenario analysis related to climate risk."
+      ],
+      "threshold": 0.6
+    },
+    {
+      "id": "STR-2",
+      "question": "Describe the impact of climate-related risks and opportunities on the organization\u2019s businesses, strategy, and financial planning.",
+      "alternatives": [
+        "How do climate-related risks and opportunities affect the organization's business operations, strategy, and financial planning?",
+        "What is the influence of climate-related risks and opportunities on the organization's strategic and financial decisions?",
+        "In what ways do climate-related risks and opportunities impact the organization's business and financial planning?"
+      ],
+      "threshold": 0.6
+    },
+    {
+      "id": "STR-3",
+      "question": "Describe the resilience of the organization\u2019s strategy, taking into consideration different climate-related scenarios, including a 2\u00b0C or lower scenario.",
+      "alternatives": [
+        "How resilient is the organization's strategy when considering various climate-related scenarios, such as a 2\u00b0C or lower scenario?",
+        "What measures ensure the organization's strategy remains robust under different climate-related scenarios, including a 2\u00b0C or lower scenario?",
+        "In what ways does the organization's strategy account for resilience in the face of climate-related scenarios like a 2\u00b0C or lower scenario?"
+      ],
+      "threshold": 0.52
+    }
+  ],
+  "Risk Management": [
+    {
+      "id": "RM-3",
+      "question": "Describe how processes for identifying, assessing, and managing climate-related risks are integrated into the organization\u2019s overall risk management.",
+      "alternatives": [
+        "How are climate-related risk identification, assessment, and management processes incorporated into the organization's overall risk management?",
+        "In what ways does the organization integrate climate-related risk processes into its broader risk management framework?",
+        "Can you explain the integration of climate-related risk procedures within the organization's general risk management?",
+        "Climate risks are embedded in our enterprise risk management framework.",
+        "We treat climate-related risks alongside traditional financial and operational risks.",
+        "ESG and climate data are integrated into our centralized risk platform.",
+        "Climate issues are reviewed by the corporate risk committee as part of overall risk governance."
+      ],
+      "threshold": 0.5
+    },
+    {
+      "id": "RM-2",
+      "question": "Describe the organization\u2019s processes for managing climate-related risks.",
+      "alternatives": [
+        "How does the organization manage climate-related risks?",
+        "What strategies are employed by the organization to handle climate-related risks?",
+        "Can you detail the organization's methods for managing climate-related risks?"
+      ],
+      "threshold": 0.55
+    },
+    {
+      "id": "RM-3",
+      "question": "Describe how processes for identifying, assessing, and managing climate-related risks are integrated into the organization\u2019s overall risk management.",
+      "alternatives": [
+        "How are climate-related risk identification, assessment, and management processes incorporated into the organization's overall risk management?",
+        "In what ways does the organization integrate climate-related risk processes into its broader risk management framework?",
+        "Can you explain the integration of climate-related risk procedures within the organization's general risk management?"
+      ],
+      "threshold": 0.5
+    }
+  ],
+  "Metrics and Targets": [
+    {
+      "id": "MT-1",
+      "question": "Disclose the metrics used by the organization to assess climate-related risks and opportunities in line with its strategy and risk management process.",
+      "alternatives": [
+        "What metrics does the organization use to evaluate climate-related risks and opportunities in alignment with its strategy and risk management?",
+        "Can you list the organization's metrics for assessing climate-related risks and opportunities?",
+        "How does the organization measure climate-related risks and opportunities in the context of its strategy and risk management?",
+        "What climate-related KPIs are reported by the organization?",
+        "Which indicators are used to monitor climate-related performance?",
+        "What non-financial metrics are used to assess climate risks and opportunities?",
+        "Does the company report climate-related key performance indicators (KPIs)?",
+        "What metrics are aligned with the organization\u2019s climate strategy and risk controls?"
+      ],
+      "threshold": 0.6
+    },
+    {
+      "id": "MT-2",
+      "question": "Disclose Scope 1, Scope 2, and, if appropriate, Scope 3 greenhouse gas (GHG) emissions, and the related risks.",
+      "alternatives": [
+        "What are the organization's Scope 1, Scope 2, and, if applicable, Scope 3 greenhouse gas emissions and their associated risks?",
+        "Can you provide details on the organization's GHG emissions across Scope 1, Scope 2, and Scope 3, along with related risks?",
+        "How does the organization disclose its Scope 1, Scope 2, and, when appropriate, Scope 3 GHG emissions and the risks involved?"
+      ],
+      "threshold": 0.65
+    },
+    {
+      "id": "MT-3",
+      "question": "Describe the targets used by the organization to manage climate-related risks and opportunities and performance against targets.",
+      "alternatives": [
+        "What targets has the organization set to manage climate-related risks and opportunities, and how is it performing against them?",
+        "Can you outline the organization's goals for addressing climate-related risks and opportunities and its progress toward achieving them?",
+        "How does the organization define and track performance against targets related to managing climate-related risks and opportunities?"
+      ],
+      "threshold": 0.58
+    }
+  ]
+}

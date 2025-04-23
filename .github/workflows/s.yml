@@ -1,0 +1,24 @@
+name: Upload Coverage Reports to Codecov
+
+on:
+  push:
+    branches:
+      - main  # Specify the branch for CI trigger
+
+jobs:
+  upload-coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Display Token (For Debugging Only)
+      run: echo "CODECOV_TOKEN=${{ secrets.CODECOV_TOKEN }}"
+
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        slug: LunarLogician/FInal-Rag-Project-Dep
+        debug: true  # Enable debugging

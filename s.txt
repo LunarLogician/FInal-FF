@@ -1,0 +1,30 @@
+et me explain how document management and chat access work in the system:
+Document Upload and Storage:
+When a file is uploaded through the /upload endpoint, the following happens:
+The file is saved to an uploads directory with a unique filename
+The text content is extracted from the file (supports .txt, .pdf, .doc, .docx)
+The extracted text is stored in a document_cache dictionary with the unique filename as the key
+The text is immediately analyzed for commitment, specificity, and ESG scores
+Document Cache:
+Apply to page.tsx
+The document_cache is a Python dictionary that keeps the extracted text in memory
+Each document is stored with its unique filename as the key
+This allows quick access to document content without re-reading files
+Chat Access to Documents:
+The chat endpoint (/api/chat) can access documents through the doc_id parameter:
+Apply to page.tsx
+When a chat message includes a doc_id, the system:
+Looks up the document content in the document_cache
+If found, includes the document content as context for the AI response
+The AI can then reference and analyze the document content in its response
+Document Analysis:
+After upload, documents are automatically analyzed for:
+Commitment and specificity scores
+ESG category scores
+These analyses are stored in the response but not in the cache
+The chat system can access the original document text but not the analysis results
+Limitations:
+The document_cache is in-memory, so documents are lost when the server restarts
+There's no permanent storage of documents or their analyses
+The system doesn't track which documents have been analyzed or their analysis history
+Would you like me to suggest any improvements to this document management system?

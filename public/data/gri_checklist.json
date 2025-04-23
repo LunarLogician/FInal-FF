@@ -1,0 +1,156 @@
+{
+  "GRI 102: General Disclosures": [
+    {
+      "id": "GRI-102-1",
+      "question": "Report the name of the organization.",
+      "alternatives": [
+        "What is the organization's name?",
+        "State the name of the company.",
+        "Provide the full legal name of the reporting entity.",
+        "This report is from [Company Name].",
+        "Prepared by [Company Name].",
+        "Issue by [Company Name].",
+        "[Company Name]."
+      ],
+      "threshold": 0.2
+    },
+    {
+      "id": "GRI-102-2",
+      "question": "Describe the organization’s activities, brands, products, and services.",
+      "alternatives": [
+        "What does the organization do?",
+        "List the company's key services and products.",
+        "Summarize the main business activities and brands."
+      ],
+      "threshold": 0.2
+    },
+    {
+      "id": "GRI-102-3",
+      "question": "Report the location of the organization’s headquarters.",
+      "alternatives": [
+        "Where is the organization headquartered?",
+        "State the location of the main office.",
+        "What is the address of the company's HQ?"
+      ],
+      "threshold": 0.2
+    },
+    {
+      "id": "GRI-102-4",
+      "question": "Report the number of countries where the organization operates.",
+      "alternatives": [
+        "How many countries does the organization operate in?",
+        "List the regions or countries of operation.",
+        "What is the global reach of the company?"
+      ],
+      "threshold": 0.2
+    },
+    {
+      "id": "GRI-102-5",
+      "question": "Report the nature of ownership and legal form.",
+      "alternatives": [
+        "What is the legal structure of the organization?",
+        "Who owns the company and in what form?",
+        "Describe the ownership and governance model."
+      ],
+      "threshold": 0.2
+    }
+  ],
+  "GRI 103: Management Approach": [
+    {
+      "id": "GRI-103-1",
+      "question": "Explain the management approach for each material topic.",
+      "alternatives": [
+        "How is each material ESG topic managed?",
+        "Describe how the organization approaches key sustainability topics.",
+        "What strategies are used to manage material impacts?"
+      ],
+      "threshold": 0.6
+    }
+  ],
+  "GRI 200: Economic": [
+    {
+      "id": "GRI-201-1",
+      "question": "Report direct economic value generated and distributed.",
+      "alternatives": [
+        "What economic value does the organization generate and distribute?",
+        "Provide financial contributions like revenue, expenses, and investments.",
+        "Summarize income and financial value shared with stakeholders."
+      ],
+      "threshold": 0.6
+    }
+  ],
+  "GRI 300: Environmental": [
+    {
+      "id": "GRI-302-1",
+      "question": "Report energy consumption within the organization.",
+      "alternatives": [
+        "How much energy does the company use internally?",
+        "Provide figures on internal electricity and fuel use.",
+        "Report energy used by the organization’s operations."
+      ],
+      "threshold": 0.6
+    },
+    {
+      "id": "GRI-305-1",
+      "question": "Report Scope 1 greenhouse gas (GHG) emissions.",
+      "alternatives": [
+        "How much GHG is emitted directly by the company?",
+        "Provide the company’s Scope 1 emissions data.",
+        "Report direct GHG emissions from owned sources."
+      ],
+      "threshold": 0.6
+    },
+    {
+      "id": "GRI-306-2",
+      "question": "Report total waste by type and disposal method.",
+      "alternatives": [
+        "What kind of waste does the company produce and how is it handled?",
+        "Describe waste types and treatment methods.",
+        "List the volumes and disposal methods of waste."
+      ],
+      "threshold": 0.6
+    }
+  ],
+  "GRI 400: Social": [
+    {
+      "id": "GRI-401-1",
+      "question": "Report new employee hires and employee turnover.",
+      "alternatives": [
+        "How many employees joined or left the company?",
+        "Report data on staff recruitment and attrition.",
+        "What is the employee turnover rate?"
+      ],
+      "threshold": 0.6
+    },
+    {
+      "id": "GRI-403-2",
+      "question": "Report types and rates of work-related injuries.",
+      "alternatives": [
+        "How often do work-related injuries occur?",
+        "Provide workplace injury statistics.",
+        "Report on health and safety incident rates."
+      ],
+      "threshold": 0.6
+    },
+    {
+      "id": "GRI-404-1",
+      "question": "Report average hours of training per employee.",
+      "alternatives": [
+        "How much training does each employee receive?",
+        "Provide average training time per staff member.",
+        "What is the training duration per worker?"
+      ],
+      "threshold": 0.6
+    },
+    {
+      "id": "GRI-405-1",
+      "question": "Report diversity of governance bodies and employees.",
+      "alternatives": [
+        "Describe the diversity of the board and workforce.",
+        "What is the demographic makeup of leadership and staff?",
+        "Report gender and age diversity among employees and management."
+      ],
+      "threshold": 0.6
+    }
+  ]
+}

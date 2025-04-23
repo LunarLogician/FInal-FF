@@ -1,0 +1,147 @@
+{
+  "General": [
+    {
+      "id": "sasb-general-1",
+      "question": "Does the report disclose the company’s greenhouse gas (GHG) emissions, including Scope 1 and Scope 2?",
+      "alternatives": [
+        "Are Scope 1 and Scope 2 GHG emissions reported?",
+        "Does the company disclose its direct and indirect emissions?",
+        "Are emissions metrics broken down by scope or source?"
+      ],
+      "threshold": 0.55
+    },
+    {
+      "id": "sasb-general-2",
+      "question": "Are the company’s energy consumption and energy efficiency initiatives reported?",
+      "alternatives": [
+        "Does the company report its energy use?",
+        "Are energy-saving or efficiency programs mentioned?",
+        "Is there data on fuel or electricity consumption?"
+      ]
+    },
+    {
+      "id": "sasb-general-3",
+      "question": "Does the report address employee health and safety performance or policies?",
+      "alternatives": [
+        "Are workplace safety statistics disclosed?",
+        "Does the report mention injury rates or lost-time incidents?",
+        "Are occupational health policies or training programs described?"
+      ],
+      "threshold": 0.55
+    },
+    {
+      "id": "sasb-general-4",
+      "question": "Is there disclosure on employee diversity, equity, and inclusion metrics or initiatives?",
+      "alternatives": [
+        "Are gender or ethnicity breakdowns reported?",
+        "Does the company describe DEI programs or goals?",
+        "Are diversity statistics or targets included?"
+      ]
+    },
+    {
+      "id": "sasb-general-5",
+      "question": "Does the report describe the company’s approach to customer privacy and data security?",
+      "alternatives": [
+        "Is customer data protection mentioned?",
+        "Are cybersecurity measures or policies described?",
+        "Does the company discuss GDPR or similar frameworks?"
+      ],
+      "threshold": 0.54
+    },
+    {
+      "id": "sasb-general-6",
+      "question": "Are product quality or safety issues disclosed, including recall or defect information if applicable?",
+      "alternatives": [
+        "Are product recalls or defects mentioned?",
+        "Does the report cover product testing or certifications?",
+        "Is there any disclosure of product safety compliance?"
+      ]
+    },
+    {
+      "id": "sasb-general-7",
+      "question": "Is there reporting on supply chain sustainability practices, including labor or environmental concerns?",
+      "alternatives": [
+        "Does the report mention ethical sourcing or supplier audits?",
+        "Are labor rights or environmental risks in the supply chain addressed?",
+        "Are supplier codes of conduct or ESG assessments described?"
+      ]
+    },
+    {
+      "id": "sasb-general-8",
+      "question": "Does the report disclose climate-related physical or transition risks?",
+      "alternatives": [
+        "Are physical risks like flooding or heat waves discussed?",
+        "Are transition risks such as policy changes or stranded assets addressed?",
+        "Does the company analyze exposure to climate-related risks?"
+      ],
+      "threshold": 0.56
+    },
+    {
+      "id": "sasb-general-9",
+      "question": "Are sustainability-linked financial risks or opportunities discussed in relation to core business strategy?",
+      "alternatives": [
+        "Does the report describe ESG-linked business risks or investments?",
+        "Are green finance, bonds, or loans mentioned?",
+        "Is sustainability embedded in business strategy or risk planning?"
+      ]
+    },
+    {
+      "id": "sasb-general-10",
+      "question": "Are water usage, consumption, or pollution disclosures included if material?",
+      "alternatives": [
+        "Is water withdrawal or discharge reported?",
+        "Does the company track water use efficiency or risk?",
+        "Are pollution or runoff controls described?"
+      ],
+      "threshold": 0.54
+    },
+    {
+      "id": "sasb-general-11",
+      "question": "Does the report outline governance structures related to sustainability or ESG topics?",
+      "alternatives": [
+        "Is there an ESG or sustainability committee?",
+        "Does the board oversee climate or social issues?",
+        "Are governance mechanisms for ESG disclosed?"
+      ]
+    },
+    {
+      "id": "sasb-general-12",
+      "question": "Are legal or regulatory proceedings related to environmental or social issues disclosed?",
+      "alternatives": [
+        "Are lawsuits or investigations related to ESG issues mentioned?",
+        "Does the report state compliance with environmental/social laws?",
+        "Are there any references to regulatory enforcement or fines?"
+      ],
+      "threshold": 0.53
+    },
+    {
+      "id": "sasb-general-13",
+      "question": "Is there quantitative disclosure of key ESG metrics relevant to the business model?",
+      "alternatives": [
+        "Are core ESG KPIs or dashboards presented?",
+        "Are sustainability metrics disclosed in tables or visuals?",
+        "Does the report include performance indicators across ESG themes?"
+      ],
+      "threshold": 0.54
+    },
+    {
+      "id": "sasb-general-14",
+      "question": "Are employee engagement, turnover, or workforce stability metrics discussed?",
+      "alternatives": [
+        "Are attrition or retention rates disclosed?",
+        "Does the report mention employee satisfaction surveys?",
+        "Are workforce development or morale indicators included?"
+      ]
+    },
+    {
+      "id": "sasb-general-15",
+      "question": "Does the report include third-party assurance or verification of ESG data?",
+      "alternatives": [
+        "Is the ESG report reviewed or assured externally?",
+        "Are audit firms or assurance providers named?",
+        "Does the company mention verification of sustainability data?"
+      ],
+      "threshold": 0.55
+    }
+  ]
+}
