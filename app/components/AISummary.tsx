@@ -8,20 +8,26 @@ interface AISummaryProps {
 export default function AISummary({ text }: AISummaryProps) {
   const [summary, setSummary] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const generateSummary = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch(`${API_CONFIG.SUMMARY_API_URL}${API_CONFIG.ENDPOINTS.SUMMARIZE}`, {
+        const response = await fetch(`${API_CONFIG.MAIN_API_URL}${API_CONFIG.ENDPOINTS.SUMMARY}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ text }),
         });
+
+        if (!response.ok) {
+          throw new Error('Failed to generate summary');
+        }
+
         const data = await response.json();
-        setSummary(data.summary);
-      } catch (error) {
-        console.error('Error generating summary:', error);
+        setSummary(data.summary || []);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to generate summary');
       } finally {
         setIsLoading(false);
       }
@@ -32,20 +38,22 @@ export default function AISummary({ text }: AISummaryProps) {
     }
   }, [text]);
 
-  if (!text) return null;
+  if (isLoading) {
+    return <div>Generating summary...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
-    <div className="bg-white p-4 rounded-xl border border-zinc-200 mb-4">
-      <h3 className="text-sm font-medium mb-3">📝 AI Summary</h3>
-      {isLoading ? (
-        <div className="text-sm text-zinc-500">Generating summary...</div>
-      ) : (
-        <ul className="list-disc list-inside space-y-2 text-sm text-zinc-700">
-          {summary.map((point, index) => (
-            <li key={index}>{point}</li>
-          ))}
-        </ul>
-      )}
+    <div className="space-y-4">
+      <h3 className="text-lg font-medium">AI Summary</h3>
+      {summary.map((item, index) => (
+        <p key={index} className="text-sm text-gray-600">
+          {item}
+        </p>
+      ))}
     </div>
   );
 } 
