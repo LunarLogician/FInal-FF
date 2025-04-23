@@ -77,8 +77,7 @@ app.add_middleware(
         "http://localhost:3000",
         "http://localhost:3001",
         "http://localhost:5001",
-        "https://final-ff.onrender.com",
-        "https://final-app-deploy-2.onrender.com"
+        "https://final-ff.onrender.com"
     ],
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
