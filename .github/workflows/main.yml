@@ -53,7 +53,7 @@ jobs:
       run: python -c "import fastapi; import pinecone; import openai; print('Backend dependencies OK')"
     
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4  # Updated from v3 to v4
       with:
         name: build-output
-        path: .next/ 
+        path: .next/
