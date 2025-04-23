@@ -280,8 +280,9 @@ async def upload_to_pinecone(request: Request):
         }
 
         print(f"Uploading vector {vector_id} to Pinecone")
-        # Upload to Pinecone
-        index = Pinecone(api_key=os.getenv("PINECONE_API_KEY")).Index(os.getenv("PINECONE_INDEX"))
+        # Initialize Pinecone
+        pc = Pinecone(api_key=os.getenv('PINECONE_API_KEY'))
+        index = pc.Index(os.getenv('PINECONE_INDEX'))
         index.upsert(vectors=[vector], namespace=namespace)
         print("Successfully uploaded to Pinecone")
 
@@ -691,7 +692,7 @@ async def analyze_csrd(input: ComplianceInput):
             return JSONResponse(
                 status_code=400,
                 content={"error": "Document text is required"}
-            )
+            )\
         
         # CSRD analysis logic
         client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
