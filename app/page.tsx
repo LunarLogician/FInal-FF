@@ -245,7 +245,7 @@ export default function Page() {
         throw new Error('Text is empty after cleaning');
       }
 
-      const response = await fetch(`${API_CONFIG.MAIN_API_URL}${API_CONFIG.ENDPOINTS.PINECONE_UPLOAD}`, {
+      const response = await fetch(`${API_CONFIG.MAIN_API_URL}${API_CONFIG.ENDPOINTS.PINECONE.UPLOAD}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -258,7 +258,7 @@ export default function Page() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to embed and upload to Pinecone');
+        throw new Error(`Failed to upload to Pinecone: ${errorData.message || 'Unknown error'}`);
       }
 
       const data = await response.json();
@@ -482,7 +482,7 @@ export default function Page() {
   
     setIsAnalyzingTCFD(true);
     try {
-      const response = await fetch("/api/analyze/tcfd", {
+      const response = await fetch(`${API_CONFIG.MAIN_API_URL}/api/analyze/tcfd`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ docText: uploadedDoc.text }),
@@ -506,7 +506,7 @@ export default function Page() {
   
     setIsAnalyzingGRI(true);
     try {
-      const res = await fetch("/api/analyze/gri", {
+      const res = await fetch(`${API_CONFIG.MAIN_API_URL}${API_CONFIG.ENDPOINTS.GRI}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ docText: uploadedDoc.text }),
@@ -530,7 +530,7 @@ export default function Page() {
   
     setIsAnalyzingCSRD(true);
     try {
-      const response = await fetch("/api/analyze/csrd", {
+      const response = await fetch(`${API_CONFIG.MAIN_API_URL}${API_CONFIG.ENDPOINTS.CSRD}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ docText: uploadedDoc.text }),
@@ -556,7 +556,7 @@ export default function Page() {
   
     setIsAnalyzingSASB(true);
     try {
-      const response = await fetch("/api/analyze/sasb", {
+      const response = await fetch(`${API_CONFIG.MAIN_API_URL}${API_CONFIG.ENDPOINTS.SASB}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ docText: uploadedDoc.text }),
