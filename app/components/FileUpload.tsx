@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { API_CONFIG } from '../config/api';
 
+const BACKEND_URL = 'https://final-ff.onrender.com';
+
 export default function FileUpload() {
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
@@ -11,7 +13,7 @@ export default function FileUpload() {
             formData.append('file', file);
 
             // First upload the file to get the text content
-            const uploadResponse = await fetch(`${API_CONFIG.MAIN_API_URL}${API_CONFIG.ENDPOINTS.UPLOAD}`, {
+            const uploadResponse = await fetch(`${BACKEND_URL}${API_CONFIG.ENDPOINTS.UPLOAD}`, {
                 method: 'POST',
                 body: formData,
             });
@@ -24,7 +26,7 @@ export default function FileUpload() {
             console.log('File uploaded successfully:', uploadResult);
 
             // Then upload to Pinecone using the rewritten URL
-            const pineconeResponse = await fetch(`${API_CONFIG.MAIN_API_URL}${API_CONFIG.ENDPOINTS.PINECONE.UPLOAD}`, {
+            const pineconeResponse = await fetch(`${BACKEND_URL}${API_CONFIG.ENDPOINTS.PINECONE.UPLOAD}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

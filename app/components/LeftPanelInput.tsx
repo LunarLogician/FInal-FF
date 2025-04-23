@@ -1,6 +1,8 @@
-import { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { Upload, ClipboardPaste } from "lucide-react";
 import { API_CONFIG } from '../config/api';
+
+const BACKEND_URL = 'https://final-ff.onrender.com';
 
 export default function LeftPanelInput({
   onUploadComplete,
@@ -16,6 +18,7 @@ export default function LeftPanelInput({
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
+  const [message, setMessage] = useState('');
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -62,7 +65,7 @@ export default function LeftPanelInput({
 
   const generateSummary = async (text: string) => {
     try {
-      const res = await fetch(`${API_CONFIG.MAIN_API_URL}${API_CONFIG.ENDPOINTS.SUMMARY}`, {
+      const res = await fetch(`${BACKEND_URL}${API_CONFIG.ENDPOINTS.SUMMARY}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ docText: text }),
@@ -86,70 +89,66 @@ export default function LeftPanelInput({
       const formData = new FormData();
       formData.append('file', file);
       
-      // Upload file to the correct endpoint
-      const uploadResponse = await fetch(`${API_CONFIG.MAIN_API_URL}${API_CONFIG.ENDPOINTS.UPLOAD}`, {
+      // First upload the file to get the text content
+      const uploadResponse = await fetch(`${BACKEND_URL}${API_CONFIG.ENDPOINTS.UPLOAD}`, {
         method: 'POST',
         body: formData,
-        headers: {
-          'Accept': 'application/json',
-        },
       });
       
       if (!uploadResponse.ok) {
-        throw new Error(`Upload failed: ${uploadResponse.status} ${uploadResponse.statusText}`);
+        throw new Error('File upload failed');
       }
 
-      let uploadData;
-      try {
-        uploadData = await uploadResponse.json();
-      } catch (e) {
-        console.error('Failed to parse upload response:', e);
-        throw new Error('Server returned invalid JSON response');
-      }
+      const uploadResult = await uploadResponse.json();
+      console.log('File uploaded successfully:', uploadResult);
       
-      if (uploadData.status === 'error') {
-        throw new Error(uploadData.message || 'Upload failed');
-      }
-      
-      console.log('File uploaded successfully:', uploadData);
-      
-      if (!uploadData.text) {
+      if (!uploadResult.text) {
         throw new Error('No text content extracted from file');
       }
 
-      // Call onUploadComplete with the extracted text
-      onUploadComplete(uploadData.filename, uploadData.text);
-
-      // Analyze the text using the correct endpoint
-      const analyzeResponse = await fetch(`${API_CONFIG.MAIN_API_URL}${API_CONFIG.ENDPOINTS.ANALYZE}`, {
+      // Then upload to Pinecone using the rewritten URL
+      const pineconeResponse = await fetch(`${BACKEND_URL}${API_CONFIG.ENDPOINTS.PINECONE.UPLOAD}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json',
         },
-        body: JSON.stringify({ text: uploadData.text }),
+        body: JSON.stringify({ text: uploadResult.text }),
       });
 
-      let analyzeData;
-      try {
-        analyzeData = await analyzeResponse.json();
-      } catch (e) {
-        console.error('Failed to parse analysis response:', e);
-        throw new Error('Server returned invalid response during analysis');
+      if (!pineconeResponse.ok) {
+        throw new Error('Pinecone upload failed');
       }
+
+      const pineconeResult = await pineconeResponse.json();
+      console.log('Pinecone upload successful:', pineconeResult);
+
+      // Call onUploadComplete with the extracted text
+      onUploadComplete(uploadResult.filename, uploadResult.text);
+
+      // Analyze the text using the correct endpoint
+      const analyzeResponse = await fetch(`${BACKEND_URL}${API_CONFIG.ENDPOINTS.ANALYZE}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ text: uploadResult.text }),
+      });
 
       if (!analyzeResponse.ok) {
-        const errorMessage = analyzeData?.message || 'Analysis failed';
-        throw new Error(errorMessage);
+        throw new Error('Analysis failed');
       }
 
-      // Upload to Pinecone
-      await embedAndUploadToPinecone(uploadData.text, uploadData.filename);
+      const analyzeResult = await analyzeResponse.json();
+      console.log('Analysis successful:', analyzeResult);
 
-      return uploadData;
+      setMessage('File uploaded and processed successfully');
+      setError('');
+
+      return uploadResult;
     } catch (err) {
       console.error('Operation failed:', err);
-      setError(err instanceof Error ? err.message : 'Operation failed');
+      setError(err instanceof Error ? err.message : 'Upload failed');
+      setMessage('');
       return null;
     } finally {
       setIsUploading(false);
@@ -241,6 +240,8 @@ export default function LeftPanelInput({
       {error && (
         <p className="text-xs sm:text-sm text-red-600 px-3 sm:px-4">{error}</p>
       )}
+
+      {message && <p className="text-green-600 mt-2">{message}</p>}
     </div>
   );
   
