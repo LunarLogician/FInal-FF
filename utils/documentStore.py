@@ -10,7 +10,10 @@ class DocumentChunk(BaseModel):
     metadata: Dict
 
 # Initialize Pinecone client once
-pc = Pinecone(api_key=os.getenv('PINECONE_API_KEY'))
+pc = Pinecone(
+    api_key=os.getenv('PINECONE_API_KEY'),
+    environment=os.getenv('PINECONE_ENVIRONMENT', 'us-east-1')
+)
 
 async def storeDocument(text: str, metadata: Optional[Dict] = None) -> int:
     try:

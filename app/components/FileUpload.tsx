@@ -19,23 +19,35 @@ export default function FileUpload() {
             });
 
             if (!uploadResponse.ok) {
-                throw new Error('File upload failed');
+                const errorData = await uploadResponse.json();
+                throw new Error(`File upload failed: ${errorData.message || 'Unknown error'}`);
             }
 
             const uploadResult = await uploadResponse.json();
             console.log('File uploaded successfully:', uploadResult);
 
+            if (!uploadResult.text) {
+                throw new Error('No text content extracted from file');
+            }
+
             // Then upload to Pinecone using the rewritten URL
+            console.log('Attempting Pinecone upload with text length:', uploadResult.text.length);
             const pineconeResponse = await fetch(`${BACKEND_URL}${API_CONFIG.ENDPOINTS.PINECONE.UPLOAD}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ text: uploadResult.text }),
+                body: JSON.stringify({ 
+                    text: uploadResult.text,
+                    namespace: 'default'
+                }),
             });
 
             if (!pineconeResponse.ok) {
-                throw new Error('Pinecone upload failed');
+                const errorData = await pineconeResponse.json();
+                console.error('Pinecone upload failed with status:', pineconeResponse.status);
+                console.error('Error details:', errorData);
+                throw new Error(`Pinecone upload failed: ${errorData.message || 'Unknown error'}`);
             }
 
             const pineconeResult = await pineconeResponse.json();

@@ -2,8 +2,6 @@ import React, { useState, useRef } from "react";
 import { Upload, ClipboardPaste } from "lucide-react";
 import { API_CONFIG } from '../config/api';
 
-const BACKEND_URL = 'https://final-ff.onrender.com';
-
 export default function LeftPanelInput({
   onUploadComplete,
   embedAndUploadToPinecone,
@@ -65,7 +63,7 @@ export default function LeftPanelInput({
 
   const generateSummary = async (text: string) => {
     try {
-      const res = await fetch(`${BACKEND_URL}${API_CONFIG.ENDPOINTS.SUMMARY}`, {
+      const res = await fetch(`${API_CONFIG.MAIN_API_URL}${API_CONFIG.ENDPOINTS.SUMMARY}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ docText: text }),
@@ -90,7 +88,7 @@ export default function LeftPanelInput({
       formData.append('file', file);
       
       // First upload the file to get the text content
-      const uploadResponse = await fetch(`${BACKEND_URL}${API_CONFIG.ENDPOINTS.UPLOAD}`, {
+      const uploadResponse = await fetch(`${API_CONFIG.MAIN_API_URL}${API_CONFIG.ENDPOINTS.UPLOAD}`, {
         method: 'POST',
         body: formData,
       });
@@ -107,7 +105,7 @@ export default function LeftPanelInput({
       }
 
       // Then upload to Pinecone using the rewritten URL
-      const pineconeResponse = await fetch(`${BACKEND_URL}${API_CONFIG.ENDPOINTS.PINECONE.UPLOAD}`, {
+      const pineconeResponse = await fetch(`${API_CONFIG.MAIN_API_URL}${API_CONFIG.ENDPOINTS.PINECONE.UPLOAD}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -129,7 +127,7 @@ export default function LeftPanelInput({
       onUploadComplete(uploadResult.filename, uploadResult.text);
 
       // Analyze the text using the correct endpoint
-      const analyzeResponse = await fetch(`${BACKEND_URL}${API_CONFIG.ENDPOINTS.ANALYZE}`, {
+      const analyzeResponse = await fetch(`${API_CONFIG.MAIN_API_URL}${API_CONFIG.ENDPOINTS.ANALYZE}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -198,54 +196,40 @@ export default function LeftPanelInput({
           className={`border-2 border-dashed rounded-lg px-3 sm:px-4 py-6 sm:py-8 text-center text-sm cursor-pointer transition-all
             ${
               isDragging
-                ? "border-blue-500 bg-blue-50 text-blue-700"
-                : "border-gray-300 text-gray-500 hover:bg-zinc-50"
+                ? "border-blue-500 bg-blue-50"
+                : "border-gray-300 hover:border-blue-500 hover:bg-blue-50"
             }`}
         >
-          {selectedFile ? (
+          <div className="flex flex-col items-center gap-2">
+            <Upload size={24} className="text-gray-400" />
             <div>
-              <p className="text-gray-700 text-xs sm:text-sm md:text-base break-all">
-                Selected: <strong>{selectedFile.name}</strong>
-              </p>
+              <span className="text-blue-600 font-medium">Click to upload</span> or drag and drop
             </div>
-          ) : (
-            <p className="text-xs sm:text-sm md:text-base">
-              Drag and drop a file here, or{" "}
-              <span className="underline">click to browse</span>
+            <p className="text-xs text-gray-500">
+              PDF or DOCX up to 25MB
             </p>
-          )}
+          </div>
         </div>
-  
-        <button
-          onClick={() => selectedFile && handleFileUpload(selectedFile)}
-          disabled={!selectedFile || isUploading}
-          className={`w-full min-h-[40px] sm:min-h-[44px] px-3 sm:px-4 py-2 text-sm md:text-base rounded transition-colors flex items-center justify-center gap-2 ${
-            isUploading
-              ? "bg-blue-200 text-blue-800 cursor-wait"
-              : "bg-blue-500 text-white hover:bg-blue-600"
-          } disabled:opacity-50 disabled:cursor-not-allowed`}
-        >
-          {isUploading ? (
-            <>
-              <span>Processing</span>
-              <span className="flex space-x-1">
-                <span className="w-1 sm:w-1.5 h-1 sm:h-1.5 bg-blue-800 rounded-full animate-bounce"></span>
-                <span className="w-1 sm:w-1.5 h-1 sm:h-1.5 bg-blue-800 rounded-full animate-bounce [animation-delay:0.2s]"></span>
-                <span className="w-1 sm:w-1.5 h-1 sm:h-1.5 bg-blue-800 rounded-full animate-bounce [animation-delay:0.4s]"></span>
-              </span>
-            </>
-          ) : (
-            "Submit File"
-          )}
-        </button>
-      </div>
-  
-      {error && (
-        <p className="text-xs sm:text-sm text-red-600 px-3 sm:px-4">{error}</p>
-      )}
 
-      {message && <p className="text-green-600 mt-2">{message}</p>}
+        {selectedFile && (
+          <div className="flex items-center justify-between p-2 bg-gray-50 rounded-lg">
+            <span className="text-sm text-gray-600 truncate">{selectedFile.name}</span>
+            <button
+              onClick={() => handleFileUpload(selectedFile)}
+              disabled={isUploading}
+              className="px-3 py-1 text-sm text-white bg-blue-600 rounded hover:bg-blue-700 disabled:opacity-50"
+            >
+              {isUploading ? "Uploading..." : "Upload"}
+            </button>
+          </div>
+        )}
+
+        {error && (
+          <p className="text-xs sm:text-sm text-red-600 px-3 sm:px-4">{error}</p>
+        )}
+
+        {message && <p className="text-green-600 mt-2">{message}</p>}
+      </div>
     </div>
   );
-  
 }

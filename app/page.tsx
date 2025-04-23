@@ -232,16 +232,14 @@ export default function Page() {
   // ✅ Add this below state hooks
   const [isNavOpen, setIsNavOpen] = useState(false);
 
-  const BACKEND_URL = 'https://final-ff.onrender.com';
-
   const embedAndUploadToPinecone = async (text: string, name?: string) => {
     try {
-      const response = await fetch(`${BACKEND_URL}${API_CONFIG.ENDPOINTS.PINECONE.UPLOAD}`, {
+      const response = await fetch(`${API_CONFIG.MAIN_API_URL}${API_CONFIG.ENDPOINTS.PINECONE.UPLOAD}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ text, name }),
+        body: JSON.stringify({ text, namespace: name || 'default' }),
       });
 
       if (!response.ok) {
@@ -346,7 +344,7 @@ export default function Page() {
   const handleAnalyze = async () => {
     try {
       setIsAnalyzing(true);
-      const response = await fetch(`${BACKEND_URL}${API_CONFIG.ENDPOINTS.ANALYZE}`, {
+      const response = await fetch(`${API_CONFIG.MAIN_API_URL}${API_CONFIG.ENDPOINTS.ANALYZE}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -377,7 +375,7 @@ export default function Page() {
     }
     setIsAnalyzingESG(true); // START loading indicator for ESG
     try {
-      const response = await fetch(`${BACKEND_URL}${API_CONFIG.ENDPOINTS.ESG}`, {
+      const response = await fetch(`${API_CONFIG.MAIN_API_URL}${API_CONFIG.ENDPOINTS.ESG}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: uploadedDoc.text }),
@@ -470,7 +468,7 @@ export default function Page() {
   
     setIsAnalyzingTCFD(true);
     try {
-      const response = await fetch(`${BACKEND_URL}/api/analyze/tcfd`, {
+      const response = await fetch(`${API_CONFIG.MAIN_API_URL}/api/analyze/tcfd`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ docText: uploadedDoc.text }),
@@ -494,7 +492,7 @@ export default function Page() {
   
     setIsAnalyzingGRI(true);
     try {
-      const res = await fetch(`${BACKEND_URL}${API_CONFIG.ENDPOINTS.GRI}`, {
+      const res = await fetch(`${API_CONFIG.MAIN_API_URL}${API_CONFIG.ENDPOINTS.GRI}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ docText: uploadedDoc.text }),
@@ -518,7 +516,7 @@ export default function Page() {
   
     setIsAnalyzingCSRD(true);
     try {
-      const response = await fetch(`${BACKEND_URL}${API_CONFIG.ENDPOINTS.CSRD}`, {
+      const response = await fetch(`${API_CONFIG.MAIN_API_URL}${API_CONFIG.ENDPOINTS.CSRD}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ docText: uploadedDoc.text }),
@@ -544,7 +542,7 @@ export default function Page() {
   
     setIsAnalyzingSASB(true);
     try {
-      const response = await fetch(`${BACKEND_URL}${API_CONFIG.ENDPOINTS.SASB}`, {
+      const response = await fetch(`${API_CONFIG.MAIN_API_URL}${API_CONFIG.ENDPOINTS.SASB}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ docText: uploadedDoc.text }),
@@ -570,7 +568,7 @@ export default function Page() {
   
     setIsAnalyzingConsistency(true); // START
     try {
-      const response = await fetch(`${BACKEND_URL}${API_CONFIG.ENDPOINTS.CONSISTENCY}`, {
+      const response = await fetch(`${API_CONFIG.MAIN_API_URL}${API_CONFIG.ENDPOINTS.CONSISTENCY}`, {
         method: "POST",
         headers: { 
           "Content-Type": "application/json",
@@ -704,7 +702,7 @@ export default function Page() {
 
               // Rest of the analysis
               // 1. Cheap Talk
-              const cheapRes = await fetch(`${BACKEND_URL}${API_CONFIG.ENDPOINTS.ANALYZE}`, {
+              const cheapRes = await fetch(`${API_CONFIG.MAIN_API_URL}${API_CONFIG.ENDPOINTS.ANALYZE}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ text }),
@@ -714,7 +712,7 @@ export default function Page() {
 
               // 2. Consistency
               setIsAnalyzingConsistency(true);
-              const consistencyRes = await fetch(`${BACKEND_URL}${API_CONFIG.ENDPOINTS.CONSISTENCY}`, {
+              const consistencyRes = await fetch(`${API_CONFIG.MAIN_API_URL}${API_CONFIG.ENDPOINTS.CONSISTENCY}`, {
                 method: "POST",
                 headers: { 
                   "Content-Type": "application/json",
@@ -733,7 +731,7 @@ export default function Page() {
 
               // 3. ESG
               setIsAnalyzingESG(true);
-              const esgRes = await fetch(`${BACKEND_URL}${API_CONFIG.ENDPOINTS.ESG}`, {
+              const esgRes = await fetch(`${API_CONFIG.MAIN_API_URL}${API_CONFIG.ENDPOINTS.ESG}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ text }),

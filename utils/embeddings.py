@@ -4,7 +4,10 @@ from typing import List
 
 async def getEmbedding(text: str) -> List[float]:
     try:
-        client = openai.OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+        # Initialize the client with the API key
+        client = openai.AsyncOpenAI(
+            api_key=os.getenv('OPENAI_API_KEY')
+        )
         
         # Create embedding using text-embedding-3-small model
         response = await client.embeddings.create(

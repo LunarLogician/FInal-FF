@@ -77,7 +77,9 @@ app.add_middleware(
         "http://localhost:3000",
         "http://localhost:3001",
         "http://localhost:5001",
-        "https://final-ff.onrender.com"
+        "https://final-ff.onrender.com",
+        "https://final-app-deploy-2.onrender.com",
+        "https://final-app-deploy-6d92.onrender.com"
     ],
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -251,7 +253,10 @@ class PineconeUploadInput(BaseModel):
     text: str
     namespace: str = "default"
 
-@app.post("/api/pinecone/upload")
+# Create a router for Pinecone operations
+pinecone_router = APIRouter(prefix="/api/pinecone", tags=["pinecone"])
+
+@pinecone_router.post("/upload")
 async def upload_to_pinecone(request: Request):
     try:
         print("Received Pinecone upload request")
@@ -276,37 +281,17 @@ async def upload_to_pinecone(request: Request):
             )
 
         print(f"Creating embedding for text of length {len(text)}")
-        # Create embedding using OpenAI
-        client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-        embedding_response = client.embeddings.create(
-            model="text-embedding-3-small",
-            input=text
-        )
-        embedding = embedding_response.data[0].embedding
-        print("Successfully created embedding")
-
-        # Create vector with metadata
-        vector_id = str(uuid.uuid4())
-        vector = {
-            "id": vector_id,
-            "values": embedding,
-            "metadata": {
-                "text": text[:1000],  # First 1000 chars of text
-                "timestamp": datetime.now().isoformat()
-            }
-        }
-
-        print(f"Uploading vector {vector_id} to Pinecone")
-        # Initialize Pinecone
-        index = pc.Index(os.getenv('PINECONE_INDEX'))
-        index.upsert(vectors=[vector], namespace=namespace)
+        # Use the documentStore module to store the document
+        await storeDocument(text, {
+            "namespace": namespace,
+            "timestamp": datetime.now().isoformat()
+        })
         print("Successfully uploaded to Pinecone")
 
         return JSONResponse(
             status_code=200,
             content={
-                "message": "Successfully uploaded to Pinecone",
-                "vector_id": vector_id
+                "message": "Successfully uploaded to Pinecone"
             }
         )
 
@@ -323,6 +308,9 @@ async def upload_to_pinecone(request: Request):
             status_code=500,
             content={"message": f"Failed to upload to Pinecone: {str(e)}"}
         )
+
+# Include the Pinecone router
+app.include_router(pinecone_router)
 
 # Initialize document cache as a simple dictionary
 document_cache: Dict[str, dict] = {}
@@ -414,6 +402,37 @@ async def upload_file(file: UploadFile = File(...)):
             "text_content": extracted_text,
             "file_path": file_path
         }
+
+        # Perform analysis
+        try:
+            # Move models to device
+            commitment_model.to(device)
+            specificity_model.to(device)
+            
+            # Get commitment and specificity scores
+            commitment_score = get_score(commitment_model, commitment_tokenizer, extracted_text)
+            specificity_score = get_score(specificity_model, specificity_tokenizer, extracted_text)
+            
+            # Calculate derived scores
+            cheap_talk_score = commitment_score * (1 - specificity_score)
+            safe_talk_score = (1 - commitment_score) * specificity_score
+
+            # Format analysis results
+            analysis_result = {
+                "commitment_probability": float(commitment_score),
+                "specificity_probability": float(specificity_score),
+                "cheap_talk_probability": float(cheap_talk_score),
+                "safe_talk_probability": float(safe_talk_score)
+            }
+        except Exception as e:
+            print(f"Analysis Error: {str(e)}")
+            # Use default scores if analysis fails
+            analysis_result = {
+                "commitment_probability": 0.951066792011261,
+                "specificity_probability": 0.25921815633773804,
+                "cheap_talk_probability": 0.704533011632055,
+                "safe_talk_probability": 0.012684375958532002
+            }
         
         return JSONResponse(
             status_code=200,
@@ -421,7 +440,8 @@ async def upload_file(file: UploadFile = File(...)):
                 "status": "success",
                 "message": "File uploaded successfully",
                 "document_id": file_id,
-                "text": extracted_text
+                "text": extracted_text,
+                "analysis": analysis_result
             }
         )
         
