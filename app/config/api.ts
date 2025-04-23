@@ -1,5 +1,5 @@
 export const API_CONFIG = {
-  MAIN_API_URL: process.env.NEXT_PUBLIC_MAIN_API_URL || 'https://final-ff.onrender.com',
+  MAIN_API_URL: process.env.NEXT_PUBLIC_MAIN_API_URL || 'http://localhost:5001',
   ENDPOINTS: {
     UPLOAD: '/api/upload',
     ANALYZE: process.env.NEXT_PUBLIC_ANALYZE_ENDPOINT || '/analyze',

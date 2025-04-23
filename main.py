@@ -5,6 +5,29 @@ from dotenv import load_dotenv
 import traceback
 import numpy as np
 import json
+from pinecone import Pinecone
+import openai
+from fastapi import FastAPI, HTTPException, File, UploadFile, Form, Body, Request
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.routing import APIRouter
+from analyze.consistency import router as consistency_router
+from typing import Optional, Dict, List
+import shutil
+from pydantic import BaseModel, ValidationError
+from fastapi.responses import JSONResponse, StreamingResponse
+from fastapi.exceptions import RequestValidationError
+import torch
+from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline
+import langid
+import math
+import uuid
+from datetime import datetime
+from utils.documentStore import storeDocument, searchDocument, DocumentChunk
+from utils.embeddings import getEmbedding
+import uvicorn
+import PyPDF2
+from docx import Document
+from openai import OpenAI
 
 # Load environment variables at the very start
 load_dotenv()
@@ -26,30 +49,24 @@ missing_vars = [var for var in required_env_vars if not os.getenv(var)]
 if missing_vars:
     raise ValueError(f"Missing required environment variables: {', '.join(missing_vars)}")
 
-from fastapi import FastAPI, HTTPException, File, UploadFile, Form, Body, Request
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.routing import APIRouter
-from analyze.consistency import router as consistency_router
-from typing import Optional, Dict, List
-import shutil
-from pydantic import BaseModel, ValidationError
-from fastapi.responses import JSONResponse, StreamingResponse
-from fastapi.exceptions import RequestValidationError
-import torch
-from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline
-import langid
-import math
-import uuid
-from datetime import datetime
-import openai
-from openai import OpenAI
-import uvicorn
-from pinecone import Pinecone
-import PyPDF2
-from docx import Document
-
 # Initialize OpenAI
 openai.api_key = os.getenv("OPENAI_API_KEY")
+
+# Initialize Pinecone
+pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
+
+# Create or get the index
+index_name = os.getenv("PINECONE_INDEX", "embed-upload")
+try:
+    index = pc.Index(index_name)
+except Exception as e:
+    # If index doesn't exist, create it
+    pc.create_index(
+        name=index_name,
+        dimension=1536,  # OpenAI embedding dimension
+        metric="cosine"
+    )
+    index = pc.Index(index_name)
 
 app = FastAPI(title="Combined API Service")
 
@@ -59,6 +76,7 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:3000",
         "http://localhost:3001",
+        "http://localhost:5001",
         "https://final-ff.onrender.com",
         "https://final-ff.onrender.com/"
     ],
@@ -281,7 +299,6 @@ async def upload_to_pinecone(request: Request):
 
         print(f"Uploading vector {vector_id} to Pinecone")
         # Initialize Pinecone
-        pc = Pinecone(api_key=os.getenv('PINECONE_API_KEY'))
         index = pc.Index(os.getenv('PINECONE_INDEX'))
         index.upsert(vectors=[vector], namespace=namespace)
         print("Successfully uploaded to Pinecone")
